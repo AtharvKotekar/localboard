@@ -151,7 +151,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         setUser(mockUser as User)
-        setProfile(demoUser as DatabaseUser)
+        setProfile({
+          ...demoUser,
+          avatar_url: demoUser.avatar_url || undefined
+        } as DatabaseUser)
         
         return { error: null }
       }
@@ -190,7 +193,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         setUser(mockUser as User)
-        setProfile(newUser as DatabaseUser)
+        setProfile({
+          ...newUser,
+          avatar_url: newUser.avatar_url || undefined
+        } as DatabaseUser)
         
         return { error: null }
       }
@@ -205,13 +211,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       // Create user profile if signup successful
       if (data.user) {
-        const { error: profileError } = await supabase
+        const { error: profileError } = await (supabase as any)
           .from('users')
           .insert({
             id: data.user.id,
             email: email,
             name: userData.name,
-            role: userData.role as any,
+            role: userData.role,
             tagline: userData.tagline || '',
             is_admin: false
           })

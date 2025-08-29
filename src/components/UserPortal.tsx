@@ -40,6 +40,14 @@ export default function UserPortal({ isOpen, onClose }: UserPortalProps) {
 
     try {
       setActivitiesLoading(true)
+      
+      // Check if we're in demo mode
+      if (process.env.NEXT_PUBLIC_DEMO_MODE === 'true') {
+        // In demo mode, just set empty activities or mock data
+        setActivities([])
+        return
+      }
+
       const { data, error } = await supabase
         .from('activities')
         .select('*')
@@ -51,6 +59,8 @@ export default function UserPortal({ isOpen, onClose }: UserPortalProps) {
       setActivities(data || [])
     } catch (err) {
       console.error('Error fetching activities:', err)
+      // Set empty array instead of undefined to avoid further errors
+      setActivities([])
     } finally {
       setActivitiesLoading(false)
     }

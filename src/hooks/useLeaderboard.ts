@@ -9,7 +9,7 @@ const mockLeaderboardData: LeaderboardEntry[] = [
   {
     user_id: 'demo-alice',
     name: 'Alice Chen',
-    avatar_url: null,
+    avatar_url: undefined,
     role: 'coder',
     tagline: 'Full-stack wizard building the next unicorn',
     total_points: 285,
@@ -20,7 +20,7 @@ const mockLeaderboardData: LeaderboardEntry[] = [
   {
     user_id: 'demo-admin',
     name: 'Admin User',
-    avatar_url: null,
+    avatar_url: undefined,
     role: 'misc',
     tagline: 'Managing the house like a boss',
     total_points: 150,
@@ -57,7 +57,7 @@ export function useLeaderboard() {
       setError(null)
 
       // Use the leaderboard view/function
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('leaderboard')
         .select('*')
         .order('total_points', { ascending: false })
@@ -169,7 +169,7 @@ export function useUserStats(userId?: string) {
         setError(null)
 
         // Get user's total points and activities
-        const { data: activities, error: activitiesError } = await supabase
+        const { data: activities, error: activitiesError } = await (supabase as any)
           .from('activities')
           .select('*')
           .eq('user_id', userId)
@@ -178,14 +178,14 @@ export function useUserStats(userId?: string) {
 
         if (activitiesError) throw activitiesError
 
-        const totalPoints = activities?.reduce((sum, activity) => sum + activity.points, 0) || 0
+        const totalPoints = activities?.reduce((sum: number, activity: any) => sum + (activity.points || 0), 0) || 0
         
         // Calculate streak (simplified - check consecutive days with activities)
         let streakDays = 0
         const today = new Date()
         const activities_by_date = new Map()
         
-        activities?.forEach(activity => {
+        activities?.forEach((activity: any) => {
           const date = new Date(activity.created_at).toDateString()
           if (!activities_by_date.has(date)) {
             activities_by_date.set(date, true)
@@ -204,14 +204,14 @@ export function useUserStats(userId?: string) {
         }
 
         // Get user's rank from leaderboard
-        const { data: leaderboard, error: leaderboardError } = await supabase
+        const { data: leaderboard, error: leaderboardError } = await (supabase as any)
           .from('leaderboard')
           .select('user_id, total_points')
           .order('total_points', { ascending: false })
 
         if (leaderboardError) throw leaderboardError
 
-        const rank = leaderboard?.findIndex(entry => entry.user_id === userId) + 1 || 0
+        const rank = leaderboard?.findIndex((entry: any) => entry.user_id === userId) + 1 || 0
 
         setStats({
           totalPoints,
