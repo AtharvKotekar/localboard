@@ -32,18 +32,18 @@ export default function FullscreenButton() {
       className="
         fixed top-6 right-6 z-50 
         flex items-center space-x-3 px-4 py-3 
-        bg-cyber-surface/80 backdrop-blur-lg border border-border-color 
-        rounded-xl text-text-secondary hover:text-neon-cyan 
-        hover:border-neon-cyan/30 hover:bg-cyber-blue/10
-        transition-all duration-300 group
+        bg-black/80 backdrop-blur-lg minimal-border 
+        rounded-lg text-gray-400 hover:text-fluorescent-green 
+        hover:border-fluorescent-green/50 hover:bg-fluorescent-green/5
+        transition-all duration-300 group mono
       "
       title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen (Perfect for TV displays)'}
     >
-      <span className="text-lg">
-        {isFullscreen ? '⛶' : '📺'}
+      <span className="text-lg mono">
+        {isFullscreen ? '◱' : '◰'}
       </span>
-      <span className="text-sm font-semibold">
-        {isFullscreen ? 'Exit TV Mode' : 'TV Mode'}
+      <span className="text-sm font-semibold mono">
+        {isFullscreen ? 'exit tv mode' : 'tv mode'}
       </span>
     </button>
   )

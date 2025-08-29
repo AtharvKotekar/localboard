@@ -8,10 +8,10 @@ import AboutTab from './tabs/AboutTab'
 import { UserProfileHeader } from './auth/AuthWrapper'
 
 const tabs = [
-  { id: 'countdown', name: 'Countdown', icon: '⏱️' },
-  { id: 'leaderboard', name: 'Leaderboard', icon: '🏆' },
-  { id: 'feed', name: 'Feed', icon: '📡' },
-  { id: 'about', name: 'About', icon: 'ℹ️' },
+  { id: 'countdown', name: 'countdown', icon: '◷' },
+  { id: 'leaderboard', name: 'leaderboard', icon: '◊' },
+  { id: 'feed', name: 'feed', icon: '◈' },
+  { id: 'about', name: 'about', icon: '◉' },
 ]
 
 export default function Dashboard() {
@@ -33,26 +33,26 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-cyber-dark text-text-primary">
+    <div className="min-h-screen bg-black text-white">
       {/* Header with Navigation */}
-      <header className="border-b border-border-color bg-cyber-surface/80 backdrop-blur-lg">
+      <header className="border-b border-gray-600 bg-dark-gray/80 backdrop-blur-lg">
         <div className="container mx-auto px-6 py-8">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-neon-green to-neon-cyan flex items-center justify-center">
-                <span className="text-xl font-bold text-cyber-dark">H</span>
+              <div className="w-10 h-10 rounded-lg bg-fluorescent-green flex items-center justify-center">
+                <span className="text-xl font-bold text-black mono">l</span>
               </div>
               <div>
-                <h1 className="text-3xl font-bold font-display text-text-primary">
-                  Hacker House
+                <h1 className="text-3xl font-bold mono text-white">
+                  localboard
                 </h1>
-                <p className="text-sm text-text-muted font-medium">Building the future, one sprint at a time</p>
+                <p className="text-sm text-gray-400 font-medium">building the future, one sprint at a time</p>
               </div>
             </div>
             <div className="flex items-center space-x-6">
               <div className="text-right">
-                <p className="text-sm font-semibold text-neon-cyan">Demo Day Sprint</p>
-                <p className="text-xs text-text-muted">Oct 4, 2025 • 8:00 PM</p>
+                <p className="text-sm font-semibold text-fluorescent-green mono">Demo Day Sprint</p>
+                <p className="text-xs text-gray-400">Oct 4, 2025 • 8:00 PM</p>
               </div>
               <UserProfileHeader />
             </div>
@@ -65,12 +65,12 @@ export default function Dashboard() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  flex items-center space-x-3 px-6 py-3 rounded-xl font-medium
+                  flex items-center space-x-3 px-6 py-3 rounded-lg font-medium mono
                   transition-all duration-200 border
                   ${
                     activeTab === tab.id
-                      ? 'bg-cyber-blue/20 text-neon-cyan border-neon-cyan/30 shadow-lg shadow-neon-cyan/10'
-                      : 'bg-cyber-darker/40 text-text-secondary border-border-color hover:bg-cyber-blue/10 hover:text-neon-cyan hover:border-neon-cyan/20'
+                      ? 'bg-fluorescent-green/10 text-fluorescent-green border-fluorescent-green/30 glow'
+                      : 'bg-med-gray text-gray-400 border-gray-600 hover:bg-fluorescent-green/5 hover:text-fluorescent-green hover:border-fluorescent-green/20'
                   }
                 `}
               >
@@ -84,24 +84,24 @@ export default function Dashboard() {
 
       {/* Tab Content */}
       <main className="container mx-auto px-4 py-8">
-        <div className="animate-slide-up">
+        <div className="fade-in">
           {renderTabContent()}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border-color bg-cyber-surface/60 backdrop-blur-sm">
+      <footer className="border-t border-gray-600 bg-dark-gray/60 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-6 h-6 rounded bg-gradient-to-br from-neon-green to-neon-cyan flex items-center justify-center">
-                <span className="text-xs font-bold text-cyber-dark">H</span>
+              <div className="w-6 h-6 rounded bg-fluorescent-green flex items-center justify-center">
+                <span className="text-xs font-bold text-black mono">l</span>
               </div>
-              <p className="text-sm text-text-muted">
-                Crafted with precision by <span className="text-neon-cyan font-semibold">Atharv</span>
+              <p className="text-sm text-gray-400">
+                crafted with precision by <span className="text-fluorescent-green font-semibold mono">atharv</span>
               </p>
             </div>
-            <div className="flex items-center space-x-4 text-xs text-text-muted">
+            <div className="flex items-center space-x-4 text-xs text-gray-400 mono">
               <span>Demo Day: Oct 4, 2025</span>
               <span>•</span>
               <span>20 Builders Strong</span>

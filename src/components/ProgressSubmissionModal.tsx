@@ -12,11 +12,11 @@ interface ProgressSubmissionModalProps {
 }
 
 const categories = [
-  { value: 'code', label: 'Code', icon: '💻', desc: 'Commits, features, bug fixes' },
-  { value: 'biz', label: 'Business', icon: '💼', desc: 'Partnerships, sales, meetings' },
-  { value: 'design', label: 'Design', icon: '🎨', desc: 'UI/UX, prototypes, graphics' },
-  { value: 'content', label: 'Content', icon: '📱', desc: 'Blogs, videos, social posts' },
-  { value: 'misc', label: 'Other', icon: '🚀', desc: 'Learning, helping, misc tasks' }
+  { value: 'code', label: 'code', icon: '◧', desc: 'commits, features, bug fixes' },
+  { value: 'biz', label: 'business', icon: '◨', desc: 'partnerships, sales, meetings' },
+  { value: 'design', label: 'design', icon: '◩', desc: 'ui/ux, prototypes, graphics' },
+  { value: 'content', label: 'content', icon: '◪', desc: 'blogs, videos, social posts' },
+  { value: 'misc', label: 'other', icon: '◫', desc: 'learning, helping, misc tasks' }
 ]
 
 export default function ProgressSubmissionModal({ isOpen, onClose, onSuccess }: ProgressSubmissionModalProps) {
@@ -57,14 +57,14 @@ export default function ProgressSubmissionModal({ isOpen, onClose, onSuccess }: 
       
       if (isDemo) {
         // In demo mode, just simulate success
-        setSuccess(`🎉 Demo: Activity submitted! Points: ${calculatedPoints}`)
+        setSuccess(`◭ demo: activity submitted! points: ${calculatedPoints}`)
       } else {
         // Submit activity to Supabase
-        const { data, error } = await supabase
+        const { data, error } = await (supabase as any)
           .from('activities')
           .insert({
             user_id: profile.id,
-            category: formData.category as any,
+            category: formData.category,
             description: formData.description,
             evidence_link: formData.evidenceLink || null,
             points: calculatedPoints,
@@ -118,7 +118,7 @@ export default function ProgressSubmissionModal({ isOpen, onClose, onSuccess }: 
         <div className="p-6 border-b border-neon-green/30">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-neon-green cyber-glow">
-              🚀 Log Your Progress
+              ◬ log your progress
             </h2>
             <button
               onClick={onClose}
@@ -222,12 +222,12 @@ export default function ProgressSubmissionModal({ isOpen, onClose, onSuccess }: 
           {formData.category && formData.description && (
             <div className="cyber-border rounded-lg p-4 bg-cyber-blue/10">
               <h3 className="text-neon-cyan font-semibold mb-2">
-                ⭐ Estimated Points: {getEstimatedPoints()}
+                ◮ estimated points: {getEstimatedPoints()}
               </h3>
               <div className="text-sm text-neon-green/70 space-y-1">
-                <p>📊 Your Role: {profile?.role} ({profile?.name})</p>
-                <p>📈 Base points calculated from description and category</p>
-                <p>🔗 Evidence link bonus: {formData.evidenceLink ? '+1-3 points' : 'None'}</p>
+                <p>◯ your role: {profile?.role} ({profile?.name})</p>
+                <p>◰ base points calculated from description and category</p>
+                <p>◱ evidence link bonus: {formData.evidenceLink ? '+1-3 points' : 'none'}</p>
               </div>
             </div>
           )}
@@ -236,7 +236,7 @@ export default function ProgressSubmissionModal({ isOpen, onClose, onSuccess }: 
           {relevantRules.length > 0 && (
             <div className="cyber-border rounded-lg p-4 bg-cyber-darker/30">
               <h3 className="text-neon-purple font-semibold mb-2">
-                💡 Scoring Guide for {categories.find(c => c.value === formData.category)?.label}
+                ◲ scoring guide for {categories.find(c => c.value === formData.category)?.label}
               </h3>
               <div className="space-y-1 text-sm text-neon-green/70">
                 {relevantRules.map((rule, index) => (
@@ -282,8 +282,8 @@ export default function ProgressSubmissionModal({ isOpen, onClose, onSuccess }: 
 
           {/* Note */}
           <div className="text-xs text-neon-green/50 text-center p-3 bg-cyber-darker/20 rounded-lg">
-            📝 Note: All activities require admin approval before points are added to the leaderboard.
-            You'll be notified once your submission is reviewed!
+            ◳ note: all activities require admin approval before points are added to the leaderboard.
+            you'll be notified once your submission is reviewed.
           </div>
         </form>
       </div>
