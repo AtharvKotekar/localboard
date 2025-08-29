@@ -5,7 +5,6 @@ import CountdownTab from './tabs/CountdownTab'
 import LeaderboardTab from './tabs/LeaderboardTab'
 import FeedTab from './tabs/FeedTab'
 import AboutTab from './tabs/AboutTab'
-import { UserProfileHeader } from './auth/AuthWrapper'
 
 const tabs = [
   { id: 'countdown', name: 'countdown', icon: '◷' },
@@ -51,10 +50,9 @@ export default function Dashboard() {
             </div>
             <div className="flex items-center space-x-6">
               <div className="text-right">
-                <p className="text-sm font-semibold text-fluorescent-green mono">Demo Day Sprint</p>
-                <p className="text-xs text-gray-400">Oct 4, 2025 • 8:00 PM</p>
+                <p className="text-sm font-semibold text-fluorescent-green mono">demo day sprint</p>
+                <p className="text-xs text-gray-400">oct 4, 2025 • 8:00 pm</p>
               </div>
-              <UserProfileHeader />
             </div>
           </div>
           

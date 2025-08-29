@@ -5,19 +5,19 @@ import { useLeaderboard } from '@/hooks/useLeaderboard'
 import { calculateLevel } from '@/lib/scoring'
 
 const roleColors = {
-  coder: 'neon-green',
-  biz: 'neon-purple',
-  design: 'neon-pink',
-  content: 'neon-cyan',
-  misc: 'neon-green'
+  coder: 'fluorescent-green',
+  biz: 'fluorescent-green',
+  design: 'fluorescent-green',
+  content: 'fluorescent-green',
+  misc: 'fluorescent-green'
 }
 
 const roleIcons = {
-  coder: '⚡',
-  biz: '💼',
-  design: '🎨',
-  content: '📱',
-  misc: '🚀'
+  coder: '◧',
+  biz: '◨',
+  design: '◩',
+  content: '◪',
+  misc: '◫'
 }
 
 export default function LeaderboardTab() {
@@ -30,9 +30,9 @@ export default function LeaderboardTab() {
   })
 
   const getTrophyIcon = (index: number) => {
-    if (index === 0) return '🥇'
-    if (index === 1) return '🥈'
-    if (index === 2) return '🥉'
+    if (index === 0) return '①'
+    if (index === 1) return '②'
+    if (index === 2) return '③'
     return `#${index + 1}`
   }
 
@@ -70,11 +70,11 @@ export default function LeaderboardTab() {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div>
-          <h2 className="text-4xl font-bold font-display cyber-glow mb-2">
-            🏆 LEADERBOARD
+          <h2 className="text-4xl font-bold mono glow-text mb-2">
+            ◊ leaderboard
           </h2>
-          <p className="text-neon-green/70">
-            Real-time rankings of our incredible builders
+          <p className="text-fluorescent-green/70 mono">
+            real-time rankings of our incredible builders
           </p>
         </div>
         
@@ -108,7 +108,7 @@ export default function LeaderboardTab() {
             onClick={refresh}
             className="px-4 py-2 rounded-lg font-medium bg-cyber-gray/20 text-neon-cyan hover:bg-cyber-blue/10 transition-all duration-300"
           >
-            🔄 Refresh
+            ◯ refresh
           </button>
         </div>
       </div>
@@ -129,12 +129,12 @@ export default function LeaderboardTab() {
               `}
             >
               <div className="text-4xl mb-2">{getTrophyIcon(index)}</div>
-              <div className="text-2xl mb-1">{roleIcons[user.role as keyof typeof roleIcons] || '🚀'}</div>
+              <div className="text-2xl mb-1">{roleIcons[user.role as keyof typeof roleIcons] || '◫'}</div>
               <h3 className="font-bold text-lg cyber-glow">{user.name}</h3>
               <p className="text-xs text-neon-green/70 mb-2">{user.tagline || 'Building the future'}</p>
               <div className="flex justify-center space-x-4 text-sm">
-                <span className="text-neon-cyan">{user.total_points} pts</span>
-                <span className="text-neon-pink">🔥 {user.streak_days}</span>
+                <span className="text-fluorescent-green">{user.total_points} pts</span>
+                <span className="text-fluorescent-green">◆ {user.streak_days}</span>
               </div>
               <div className="text-xs text-neon-purple mt-1">{levelInfo.title}</div>
             </div>
@@ -163,7 +163,7 @@ export default function LeaderboardTab() {
 
                 {/* Avatar & Info */}
                 <div className="flex items-center space-x-3 flex-grow">
-                  <div className="text-3xl">{roleIcons[user.role as keyof typeof roleIcons] || '🚀'}</div>
+                  <div className="text-3xl">{roleIcons[user.role as keyof typeof roleIcons] || '◫'}</div>
                   <div className="flex-grow">
                     <div className="flex items-center space-x-2">
                       <h3 className="font-bold text-lg cyber-glow">{user.name}</h3>
@@ -197,7 +197,7 @@ export default function LeaderboardTab() {
                   {/* Streak */}
                   <div className="text-center">
                     <div className="text-xl font-bold text-neon-pink flex items-center">
-                      🔥 {user.streak_days}
+                      ◆ {user.streak_days}
                     </div>
                     <div className="text-xs text-neon-green/70">streak</div>
                   </div>
@@ -246,7 +246,7 @@ export default function LeaderboardTab() {
       {/* Empty State */}
       {leaderboard.length === 0 && (
         <div className="text-center cyber-border rounded-lg p-8 bg-cyber-blue/10">
-          <div className="text-4xl mb-4">🚀</div>
+          <div className="text-4xl mb-4">◫</div>
           <h3 className="text-xl font-bold text-neon-cyan cyber-glow mb-2">
             Ready to Build!
           </h3>

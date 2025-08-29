@@ -29,7 +29,7 @@ export default function CountdownTab() {
   const [isPlaying, setIsPlaying] = useState(false)
 
   // Demo Day: October 4th, 2025 at 8:00 PM
-  const demoDayDate = new Date(process.env.NEXT_PUBLIC_DEMO_DAY_DATE || '2025-10-04T20:00:00')
+  const demoDayDate = new Date('2025-10-04T20:00:00')
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -117,7 +117,11 @@ export default function CountdownTab() {
           
           {/* Exit TV Mode Button */}
           <button
-            onClick={() => document.exitFullscreen()}
+            onClick={() => {
+              if (document.fullscreenElement) {
+                document.exitFullscreen().catch(() => {})
+              }
+            }}
             className="absolute top-6 right-6 px-3 py-2 text-xs mono text-gray-400 hover:text-fluorescent-green border border-gray-600 hover:border-fluorescent-green/50 rounded-md transition-all duration-200"
           >
             exit tv
