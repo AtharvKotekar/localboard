@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cyber-dark: #0f111a;
+  --cyber-darker: #0a0d14;
+  --cyber-surface: #1a1d29;
+  --neon-green: #64ffda;
+  --neon-cyan: #82b1ff;
+  --neon-pink: #ff6b9d;
+  --neon-purple: #c792ea;
+  --text-primary: #eeffff;
+  --text-secondary: #82aaff;
+  --text-muted: #546e7a;
+  --border-color: #263238;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--cyber-dark);
+  color: var(--neon-green);
+  font-family: 'Orbitron', monospace;
+}
+
+body {
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(0, 255, 135, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.05) 0%, transparent 50%);
+  min-height: 100vh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cyber-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-green);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}
+
+/* Custom components */
+.cyber-border {
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.1);
+}
+
+.cyber-glow {
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* TV Mode Optimizations */
+@media screen and (min-width: 1200px) {
+  .tv-optimized {
+    font-size: 1.2em;
+    line-height: 1.4;
+  }
+  
+  .tv-countdown-grid {
+    gap: 2rem;
+  }
+  
+  .tv-leaderboard-item {
+    padding: 1.5rem;
+    font-size: 1.1em;
+  }
+}
+
+/* Fullscreen mode optimizations */
+:fullscreen {
+  background: var(--cyber-dark);
+}
+
+:fullscreen .container {
+  max-width: 95vw;
+}
+
+:fullscreen h1, :fullscreen h2 {
+  font-size: clamp(2rem, 4vw, 5rem);
+}
+
+:fullscreen .countdown-number {
+  font-size: clamp(3rem, 8vw, 8rem);
+}
+
+/* High contrast mode for better TV visibility */
+@media (prefers-contrast: high) {
+  :root {
+    --neon-green: #00ff00;
+    --neon-cyan: #00ffff;
+    --text-primary: #ffffff;
+    --border-color: #333333;
+  }
+}
